@@ -16,8 +16,8 @@ SRCS	= srcs/main.c
 OBJS	= ${SRCS:.c=.o}
 
 HEADER	= -Iincludes
-CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror -g -Ilmx
+CC	= gcc
+CFLAGS	= -I/usr/local/lib -Imlx_linux -O3
 
 RM		= rm -f
 AR		= ar rc
@@ -28,7 +28,7 @@ RN		= ranlib
 					${CC} ${CFLAGS} ${HEADER} -c $< -o $(<:.c=.o)
 
 all: 		${PROG}
-			${CC} ${OBJS} -lmlx -framework OpenGL -framework AppKit -o ${PROG}
+			${CC} ${OBJS} -Lmlx_linux -lmlx_Linux -L/usr/local/lib -Imlx_linux -lXext -lX11 -lm -lz -o ${PROG}
 ${PROG}: ${OBJS}
 			${AR} ${PROG} ${OBJS}
 			${RN} ${PROG}
