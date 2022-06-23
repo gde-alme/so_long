@@ -57,7 +57,7 @@ t_frame	*create_frame(t_frame *frame)
 {
 	frame = (t_frame *)malloc(sizeof(t_frame));
 	frame->mlx = mlx_init();
-	frame->win = mlx_new_window(frame->mlx, 100, 50, "sigasiga");
+	frame->win = mlx_new_window(frame->mlx, 145, 75, "sigasiga");
 	frame->mvs = 0;
 	frame->pos_x = 0;
 	frame->pos_y = 0;
@@ -67,9 +67,11 @@ t_frame	*create_frame(t_frame *frame)
 int	main(void)
 {
 	t_frame	*frame;
-	//t_img	land;
+	t_img	land;
 	t_img	wall;
 	t_img	chest_c;
+	t_img	chest_o;
+	t_img	end;
 
 	frame = NULL;
 	frame = create_frame(frame);
@@ -77,14 +79,20 @@ int	main(void)
 	mlx_hook(frame->win, 2, 1L<<0, kboard_input, frame); //key_input
 	mlx_hook(frame->win, 17, 0, mouse_input, frame); //mouse_input
 	
-	//land.img = mlx_xpm_file_to_image(frame->mlx, "./images/grass.xpm", &land.img_w, &land.img_h);
-	//mlx_put_image_to_window(frame->mlx, frame->win, land.img, 0 , 0);
+	land.img = mlx_xpm_file_to_image(frame->mlx, "./images/land.xpm", &land.img_w, &land.img_h);
+	mlx_put_image_to_window(frame->mlx, frame->win, land.img, 0, 35);
 
 	chest_c.img = mlx_xpm_file_to_image(frame->mlx, "./images/chest_closed.xpm", &chest_c.img_w, &chest_c.img_h);
-	mlx_put_image_to_window(frame->mlx, frame->win, chest_c.img, frame->pos_x + 35, frame->pos_y);
+	mlx_put_image_to_window(frame->mlx, frame->win, chest_c.img, 35, 0);
+
+	chest_o.img = mlx_xpm_file_to_image(frame->mlx, "./images/chest_open.xpm", &chest_o.img_w, &chest_o.img_h);
+	mlx_put_image_to_window(frame->mlx, frame->win, chest_o.img, 70, 0);
 
 	wall.img = mlx_xpm_file_to_image(frame->mlx, "./images/wall.xpm", &wall.img_w, &wall.img_h);
-	mlx_put_image_to_window(frame->mlx, frame->win, wall.img, frame->pos_x, frame->pos_y);
+	mlx_put_image_to_window(frame->mlx, frame->win, wall.img, 0 , 0);
+
+	end.img = mlx_xpm_file_to_image(frame->mlx, "./images/end.xpm", &end.img_w, &end.img_h);
+	mlx_put_image_to_window(frame->mlx, frame->win, end.img, 105, 0);
 
 	mlx_loop(frame->mlx);
 
