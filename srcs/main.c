@@ -12,20 +12,6 @@
 
 #include "so_long.h"
 
-typedef struct s_frame {
-	void	*mlx;
-	void	*win;
-	int	mvs;
-	int	pos_x;
-	int	pos_y;
-}	t_frame;
-
-typedef struct s_img {
-	void	*img;
-	int	img_w;
-	int	img_h;
-}	t_img;
-
 void	close_game(t_frame *frame)
 {
 	//mlx_destroy_window(frame->mlx, frame->win);
@@ -61,10 +47,12 @@ t_frame	*create_frame(t_frame *frame)
 	frame->mvs = 0;
 	frame->pos_x = 0;
 	frame->pos_y = 0;
+	frame->map = NULL;
+	frame->win_h = 0;
 	return (frame);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_frame	*frame;
 	t_img	land;
@@ -72,6 +60,10 @@ int	main(void)
 	t_img	chest_c;
 	t_img	chest_o;
 	t_img	end;
+	t_img	player;
+
+	if (argc != 2)
+		return (0);
 
 	frame = NULL;
 	frame = create_frame(frame);
@@ -94,6 +86,11 @@ int	main(void)
 	end.img = mlx_xpm_file_to_image(frame->mlx, "./images/end.xpm", &end.img_w, &end.img_h);
 	mlx_put_image_to_window(frame->mlx, frame->win, end.img, 105, 0);
 
+	player.img = mlx_xpm_file_to_image(frame->mlx, "./images/player.xpm", &player.img_w, &player.img_h);
+	mlx_put_image_to_window(frame->mlx, frame->win, player.img, 105, 35);
+
+	frame->map = parse_map(frame, argv);
+	printf("%s", frame->map[1]);
 	mlx_loop(frame->mlx);
 
 	return (0);

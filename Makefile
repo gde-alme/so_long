@@ -12,7 +12,7 @@
 
 PROG	= so_long
 
-SRCS	= srcs/main.c
+SRCS	= srcs/main.c srcs/parse.c srcs/get_next_line.c srcs/get_next_line_utils.c
 OBJS	= ${SRCS:.c=.o}
 
 HEADER	= -Iincludes
