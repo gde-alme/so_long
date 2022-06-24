@@ -77,6 +77,8 @@ int	main(int argc, char **argv)
 	frame = NULL;
 	frame = create_frame(frame);
 
+	frame->map = parse_map(frame, argv);
+
 	mlx_hook(frame->win, 2, 1L<<0, kboard_input, frame); //key_input
 	mlx_hook(frame->win, 17, 0, mouse_input, frame); //mouse_input
 	
@@ -98,8 +100,6 @@ int	main(int argc, char **argv)
 	player.img = mlx_xpm_file_to_image(frame->mlx, "./images/player.xpm", &player.img_w, &player.img_h);
 	mlx_put_image_to_window(frame->mlx, frame->win, player.img, 105, 35);
 
-	frame->map = parse_map(frame, argv);
-	printf("%s", frame->map[1]);
 	mlx_loop(frame->mlx);
 
 	return (0);
