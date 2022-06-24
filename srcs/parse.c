@@ -7,7 +7,7 @@ char	*rmv_newline(char *str)
 
 	len = ft_strlen(str) - 1;
 	if (ft_strlen(str) < 2)
-		{printf("ivl map 'rmv_nl'\n");exit(-1);} //error free
+		return (str);
 	nl = ft_substr(str, 0, len);
 	free(str);
 	return (nl);
@@ -31,11 +31,13 @@ int	ft_count_lines(char *path)
 	return (i);
 }
 
-void	map_allnbrs(t_frame *frame, char **map)
+void	map_allnbrs(t_frame *frame)
 {
 	int	i;
 	int	j;
+	char	**map;
 
+	map = frame->map;
 	i = 0;
 	while (i < frame->win_h)
 	{
@@ -43,21 +45,66 @@ void	map_allnbrs(t_frame *frame, char **map)
 		while (map[i][j] != '\0')
 		{
 			if (map[i][j] > 49 || map[i][j] < 48)
-				exit(-1); //handle erroe and free
+				close_game(frame);
 			j++;
 		}
 		i++;
 	}
 }
 
-void	map_valid(t_frame *frame, char **map)
+void	map_lateral(t_frame *frame)
 {
-	map_allnbrs(frame, map);
-	//sort walls
-	//sort nbr of players
+	int	i;
+	char	**map;
+
+	map = frame->map;
+	i = 0;
+	while (i < frame->win_h)
+	{
+		if (map[i][0] != 49)
+			close_game(frame);
+		i++;
+	}
+	i = 0;
+	while (i < frame->win_h)
+	{
+		if (map[i][ft_strlen(map[i]) - 1] != 49)
+			close_game(frame);
+		i++;
+	}
 }
 
-char	**parse_map(t_frame *frame, char **argv)
+void	map_walls(t_frame *frame)
+{
+	int	i;
+	char	**map;
+
+	map = frame->map;
+	i = 0;
+	while(map[0][i] != '\0')
+	{
+		if (map[0][i] != '1')
+			close_game(frame);
+		i++;
+	}
+	i = 0;
+	while (map[frame->win_h - 1][i] != '\0')
+	{
+		if (map[frame->win_h - 1][i] != 49)
+			close_game(frame);
+		i++;
+	}
+	map_lateral(frame);	
+}
+
+void	map_lines(t_frame *frame)
+{
+	
+}
+
+	//sort nbr of players
+
+void	parse_map(t_frame *frame, char **argv)
 {
 	char	**map;
 	char	*str;
@@ -66,16 +113,21 @@ char	**parse_map(t_frame *frame, char **argv)
 
 	fd = open(argv[1], O_RDONLY);
 	str = get_next_line(fd);
-	frame->win_w = ft_strlen(str);
+	frame->win_w = ft_strlen(str) - 1;
 	frame->win_h = ft_count_lines(argv[1]);
 	map = (char **)malloc(sizeof(char) * (frame->win_h + 1));
 	map[ft_count_lines(argv[1])] = 0;
+	frame->map = map;
 	while (str != NULL)
 	{
 		map[i] = rmv_newline(str);
 		i++;
 		str = get_next_line(fd);
 	}
-	map_valid(frame, map);
-	return (map);
+	printf("%s\n", map[0]);
+	printf("%s\n", map[1]);
+	printf("%s\n", map[2]);
+	map_lines(frame);
+	map_allnbrs(frame);
+	map_walls(frame);
 }

@@ -47,7 +47,8 @@ typedef struct s_img {
 }	t_img;
 
 
-char	**parse_map(t_frame *frame, char **argv);
+void	parse_map(t_frame *frame, char **argv);
+void	close_game(t_frame *frame);
 
 char		*ft_nextline(char **save);
 char		*ft_nl(int fd, char **save);
