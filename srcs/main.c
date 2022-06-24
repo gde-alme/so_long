@@ -14,7 +14,16 @@
 
 void	close_game(t_frame *frame)
 {
+	//int	j;
+	char	**map;
+
 	//mlx_destroy_window(frame->mlx, frame->win);
+	map = frame->map;
+	//printf("%s", map[1]);
+	/*j = frame->win_w;
+	while (j-- > 0)
+		free(map[j]);
+	free(map);*/
 	exit(-1);
 }
 

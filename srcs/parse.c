@@ -21,7 +21,7 @@ char	**parse_map(t_frame *frame, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	str = get_next_line(fd);
 	frame->win_w = ft_strlen(str) - 1;
-	map = (char **)malloc(sizeof(char) * (frame->win_w + 1));
+	map = (char **)malloc(sizeof(char) * ( + 1));
 	map[frame->win_w] = 0;
 	i = 0;
 	while (str != NULL)
