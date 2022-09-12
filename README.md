@@ -1,11 +1,11 @@
-Project for 42 Lisboa.  
-  
-Brief explanation:  
--Uses Minilibx library to display image;  
--Map is a txt file  
--One "frame" (struct) holds all important info  
--Game is in reality several images displayed in sequence and in   
-	between each display, the Player coords are re-arranged.  
+<Project for 42 Lisboa>  
+
+Using Minilibx, display the map given as input (map.ber).  
+
+Use W,A,S,D to "play" the game: when one of the keys is pressed,  
+the program then proceeds to check if such alteration to the map  
+can be accomplished (a.k.a. "move the player") and if possible,  
+displays the new map with said alteration.  
 
 ```bash  
 HOW TO USE:  
