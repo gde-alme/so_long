@@ -6,7 +6,7 @@
 /*   By: gde-alme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 17:29:29 by gde-alme          #+#    #+#             */
-/*   Updated: 2022/07/20 15:50:45 by gde-alme         ###   ########.fr       */
+/*   Updated: 2022/09/12 16:54:29 by gde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,18 @@ void	ft_putmvs(t_frame *frame)
 {
 	char	*mvs;
 	int		i;
+	int		unused;
 
 	i = 0;
 	frame->mvs++;
 	mvs = ft_itoa(frame->mvs);
 	while (mvs[i] != '\0')
 	{
-		write(2, &(mvs[i]), 1);
+		unused = write(2, &(mvs[i]), 1);
 		i++;
 	}
-	write(2, "\n", 1);
+	unused = write(2, "\n", 1);
+	unused += 1;
 	free(mvs);
 }
 

@@ -6,7 +6,7 @@
 /*   By: gde-alme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 17:29:29 by gde-alme          #+#    #+#             */
-/*   Updated: 2022/07/20 16:27:14 by gde-alme         ###   ########.fr       */
+/*   Updated: 2022/09/12 16:53:38 by gde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	move_a(t_frame *frame)
 	map = frame->map;
 	pos_x = frame->pos_x;
 	pos_y = frame->pos_y;
-	if (map[pos_x][pos_y - 1] == 'E' && count_colec == 0)
+	if (map[pos_x][pos_y - 1] == 'E' && count_colec(frame) == 0)
 		close_game(frame, 0);
 	else if (map[pos_x][pos_y - 1] == '0')
 	{
@@ -108,7 +108,7 @@ void	move_d(t_frame *frame)
 	map = frame->map;
 	pos_x = frame->pos_x;
 	pos_y = frame->pos_y;
-	if (map[pos_x][pos_y + 1] == 'E' && count_colec == 0)
+	if (map[pos_x][pos_y + 1] == 'E' && count_colec(frame) == 0)
 		close_game(frame, 0);
 	else if (map[pos_x][pos_y + 1] == '0')
 	{

@@ -6,7 +6,7 @@
 #    By: gde-alme <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/18 17:22:12 by gde-alme          #+#    #+#              #
-#    Updated: 2022/07/20 13:53:32 by gde-alme         ###   ########.fr        #
+#    Updated: 2022/09/12 16:56:11 by gde-alme         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@ SRCS	= srcs/close_game.c srcs/movement.c srcs/map_display.c srcs/utils.c srcs/ma
 OBJS	= ${SRCS:.c=.o}
 
 HEADER	= -Iincludes
-CC	= gcc
-CFLAGS	= -I/Users/gde-alme/minilibx-linux -Imlx_linux -O3
+CC	= gcc -Wall -Wextra -Werror
+CFLAGS	= -I./minilibx-linux -Imlx_linux -O3
 
 RM		= rm -f
 AR		= ar rc
@@ -28,7 +28,7 @@ RN		= ranlib
 					${CC} ${CFLAGS} ${HEADER} -c $< -o $(<:.c=.o)
 
 all: 		${PROG}
-			${CC} ${OBJS} -Lmlx_linux -lmlx_Linux -L/Users/gde-alme/minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz -o ${PROG}
+			${CC} ${OBJS} -Lmlx_linux -lmlx_Linux -L./minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz -o ${PROG}
 ${PROG}: ${OBJS}
 			${AR} ${PROG} ${OBJS}
 			${RN} ${PROG}

@@ -6,7 +6,7 @@
 /*   By: gde-alme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 17:29:29 by gde-alme          #+#    #+#             */
-/*   Updated: 2022/07/20 16:49:55 by gde-alme         ###   ########.fr       */
+/*   Updated: 2022/09/12 16:53:02 by gde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	close_game(t_frame *frame, int error)
 	free_frame(frame, error);
 	if (error > 0)
 	{
-		write(2, "Error\n", 6);
-		write(2, "check map input\n", 16);
+		error = write(2, "Error\n", 6);
+		error = write(2, "check map input\n", 16);
 	}
 	exit(-1);
 }
