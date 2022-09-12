@@ -6,7 +6,8 @@ Brief explanation:
 -One "frame" (struct) holds all important info  
 -Game is in reality several images displayed in sequence and in   
 	between each display, the Player coords are re-arranged.  
-  
+
+```bash  
 HOW TO USE:  
 -git clone git@github.com:gde-alme/so_long.git  
 -cd so_long/minilibx-linux  
@@ -14,3 +15,4 @@ HOW TO USE:
 -cd ..  
 -make  
 -/so_long map.ber  
+```
