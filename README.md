@@ -1,6 +1,6 @@
 <Project for 42 Lisboa>  
 
-#HOW IT WORKS  
+# HOW IT WORKS  
 
 Using Minilibx, display the map given as input (map.ber).  
 
@@ -9,7 +9,7 @@ the program then proceeds to check if such alteration to the map
 can be accomplished (a.k.a. "move the player") and if possible,  
 displays the new map with said alteration.  
 
-##USAGE
+## USAGE
 
 ```bash  
 HOW TO USE:  
