@@ -6,45 +6,15 @@
 /*   By: gde-alme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 17:29:29 by gde-alme          #+#    #+#             */
-/*   Updated: 2022/06/18 17:44:59 by gde-alme         ###   ########.fr       */
+/*   Updated: 2022/07/20 16:27:41 by gde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	close_game(t_frame *frame)
-{
-	//int	j;
-	char	**map;
-
-	//mlx_destroy_window(frame->mlx, frame->win);
-	map = frame->map;
-	printf("cl_gm\n");
-	/*j = frame->win_w;
-	while (j-- > 0)
-		free(map[j]);
-	free(map);*/
-	exit(-1);
-}
-
 int	mouse_input(int button, int x, int y, t_frame *frame)
 {
-	close_game(frame);
-	return (0);
-}
-
-int	kboard_input(int keycode, t_frame *frame)
-{
-	if (keycode == 65307)
-		close_game(frame);
-	else if (keycode == KEY_W)
-		frame->pos_y += 1;
-	else if (keycode == KEY_A)
-		frame->pos_x -= 1;
-	else if (keycode == KEY_S)
-		frame->pos_y -= 1;
-	else if (keycode == KEY_D)
-		frame->pos_x += 1;
+	close_game(frame, 0);
 	return (0);
 }
 
@@ -54,33 +24,47 @@ t_frame	*create_frame(t_frame *frame)
 	frame->mvs = 0;
 	frame->pos_x = 0;
 	frame->pos_y = 0;
-	frame->map = NULL;
 	frame->win_h = 0;
+	frame->win_w = 0;
+	frame->map = NULL;
 	return (frame);
+}
+
+void	set_imgs(t_frame *frame)
+{
+	frame->f.img = mlx_xpm_file_to_image \
+	(frame->mlx, "./img/f.xpm", &frame->f.img_w, &frame->f.img_h);
+	frame->w.img = mlx_xpm_file_to_image \
+	(frame->mlx, "./img/w.xpm", &frame->w.img_w, &frame->w.img_h);
+	frame->c_o.img = mlx_xpm_file_to_image \
+	(frame->mlx, "./img/c_o.xpm", &frame->c_o.img_w, &frame->c_o.img_h);
+	frame->c_c.img = mlx_xpm_file_to_image \
+	(frame->mlx, "./img/c_c.xpm", &frame->c_c.img_w, &frame->c_c.img_h);
+	frame->p.img = mlx_xpm_file_to_image \
+	(frame->mlx, "./img/p.xpm", &frame->p.img_w, &frame->p.img_h);
+	frame->e.img = mlx_xpm_file_to_image \
+	(frame->mlx, "./img/e.xpm", &frame->e.img_w, &frame->e.img_h);
+	frame->l.img = mlx_xpm_file_to_image \
+	(frame->mlx, "./img/l.xpm", &frame->l.img_w, &frame->l.img_h);
 }
 
 int	main(int argc, char **argv)
 {
 	t_frame	*frame;
-	t_img	player;
 
 	if (argc != 2)
 		return (0);
-
 	frame = NULL;
 	frame = create_frame(frame);
-
-	parse_map(frame, argv);
-	/*frame->mlx = mlx_init();
-	frame->win = mlx_new_window(frame->mlx, 145, 75, "sigasiga");
-
-	mlx_hook(frame->win, 2, 1L<<0, kboard_input, frame); //key_input
-	mlx_hook(frame->win, 17, 0, mouse_input, frame); //mouse_input
-	
-	player.img = mlx_xpm_file_to_image(frame->mlx, "./images/player.xpm", &player.img_w, &player.img_h);
-	mlx_put_image_to_window(frame->mlx, frame->win, player.img, 105, 35);
-
+	read_map(frame, argv[1]);
+	count_colec(frame);
+	frame->mlx = mlx_init();
+	frame->win = mlx_new_window \
+	(frame->mlx, frame->win_w * 32, frame->win_h * 32, "so_long");
+	set_imgs(frame);
+	mlx_hook(frame->win, 2, 1L << 0, kboard_input, frame);
+	mlx_hook(frame->win, 17, 0, mouse_input, frame);
+	map_display(frame);
 	mlx_loop(frame->mlx);
-	*/
 	return (0);
 }
