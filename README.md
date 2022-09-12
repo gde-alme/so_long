@@ -11,10 +11,9 @@ displays the new map with said alteration.
 
 ## USAGE
 
-```bash  
-HOW TO USE:  
--git clone git@github.com:gde-alme/so_long.git  
--cd so_long/minilibx-linux  
+```bash   
+>git clone git@github.com:gde-alme/so_long.git  
+>cd so_long/minilibx-linux  
 -./configure  
 -cd ..  
 -make  
