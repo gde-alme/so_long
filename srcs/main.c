@@ -6,7 +6,7 @@
 /*   By: gde-alme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 17:29:29 by gde-alme          #+#    #+#             */
-/*   Updated: 2022/07/20 16:27:41 by gde-alme         ###   ########.fr       */
+/*   Updated: 2022/09/12 16:59:11 by gde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 int	mouse_input(int button, int x, int y, t_frame *frame)
 {
+	printf("%i", button);
+	printf("%i", x);
+	printf("%i", y);
 	close_game(frame, 0);
 	return (0);
 }

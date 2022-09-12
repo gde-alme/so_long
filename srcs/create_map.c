@@ -6,7 +6,7 @@
 /*   By: gde-alme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 17:29:29 by gde-alme          #+#    #+#             */
-/*   Updated: 2022/07/20 16:26:16 by gde-alme         ###   ########.fr       */
+/*   Updated: 2022/09/12 17:02:20 by gde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ void	read_map(t_frame *frame, char *pathname)
 	char	**map;
 	int		fd;
 	int		i;
-	int		j;
 
 	fd = open(pathname, O_RDONLY);
 	frame->win_h = ft_count_lines(pathname);

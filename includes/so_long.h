@@ -6,7 +6,7 @@
 /*   By: gde-alme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 17:23:39 by gde-alme          #+#    #+#             */
-/*   Updated: 2022/07/20 16:17:31 by gde-alme         ###   ########.fr       */
+/*   Updated: 2022/09/12 17:01:55 by gde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,6 @@ char	*ft_strchr(const char *s, int c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strdup(char *s1);
-size_t	ft_strlen(const char *s);
+int	ft_strlen(const char *s);
 
 #endif
