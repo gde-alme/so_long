@@ -111,7 +111,9 @@ int	ft_count_lines(char *path_to_file)
 		if (line[0] != '1')
 			return (i);
 		i++;
+		free(line);
 		line = get_next_line(fd);
 	}
+	free(line);
 	return (i);
 }
