@@ -52,7 +52,7 @@ int	main(int argc, char **argv)
 {
 	t_frame	*frame;
 
-	if (argc != 2)
+	if (argc != 2 || test_pathname(argv[1]) != 1)
 		return (0);
 	frame = NULL;
 	frame = create_frame(frame);

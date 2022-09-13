@@ -60,6 +60,7 @@ int		kboard_input(int keykode, t_frame *frame);
 int		count_colec(t_frame *frame);
 void	close_game(t_frame *frame, int error);
 void	ft_putmvs(t_frame *frame);
+int	test_pathname(char *pathname);
 
 char	*get_next_line(int fd);
 char	*ft_strchr(const char *s, int c);

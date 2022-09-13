@@ -12,7 +12,7 @@
 
 PROG	= so_long
 
-SRCS	= srcs/close_game.c srcs/movement.c srcs/map_display.c srcs/utils.c srcs/main.c srcs/create_map.c srcs/gnl.c srcs/gnl_utils.c 
+SRCS	= srcs/close_game.c srcs/movement.c srcs/map_display.c srcs/utils.c srcs/main.c srcs/create_map.c srcs/gnl.c srcs/gnl_utils.c srcs/utils2.c
 OBJS	= ${SRCS:.c=.o}
 
 HEADER	= -Iincludes
