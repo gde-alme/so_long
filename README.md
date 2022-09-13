@@ -19,3 +19,9 @@ displays the new map with said alteration.
 >make  
 >/so_long map.ber  
 ```
+## OTHER  
+  
+```bash
+How to download minilibx-linux from project page (debian):
+  >curl -LJO [copy link]
+```
