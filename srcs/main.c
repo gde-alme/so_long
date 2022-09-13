@@ -12,11 +12,8 @@
 
 #include "so_long.h"
 
-int	mouse_input(int button, int x, int y, t_frame *frame)
+int	destroy_window(t_frame *frame)
 {
-	printf("%i", button);
-	printf("%i", x);
-	printf("%i", y);
 	close_game(frame, 0);
 	return (0);
 }
@@ -65,8 +62,8 @@ int	main(int argc, char **argv)
 	frame->win = mlx_new_window \
 	(frame->mlx, frame->win_w * 32, frame->win_h * 32, "so_long");
 	set_imgs(frame);
-	mlx_hook(frame->win, 2, 1L << 0, kboard_input, frame);
-	mlx_hook(frame->win, 17, 0, mouse_input, frame);
+	mlx_key_hook(frame->win, kboard_input, frame);
+	mlx_hook(frame->win, 17, 0, destroy_window, frame);
 	map_display(frame);
 	mlx_loop(frame->mlx);
 	return (0);
