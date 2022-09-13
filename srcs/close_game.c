@@ -29,6 +29,13 @@ void	free_frame(t_frame *frame, int error)
 {
 	if (error == 0)
 		mlx_destroy_window(frame->mlx, frame->win);
+	mlx_destroy_image(frame->mlx, frame->w.img);
+	mlx_destroy_image(frame->mlx, frame->f.img);
+	mlx_destroy_image(frame->mlx, frame->c_o.img);
+	mlx_destroy_image(frame->mlx, frame->c_c.img);
+	mlx_destroy_image(frame->mlx, frame->l.img);
+	mlx_destroy_image(frame->mlx, frame->e.img);
+	mlx_destroy_image(frame->mlx, frame->p.img);
 	free(frame);
 }
 
