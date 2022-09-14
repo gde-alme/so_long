@@ -22,6 +22,6 @@ displays the new map with said alteration.
 ## OTHER  
   
 ```bash
-How to download minilibx-linux from project page (debian):
+How to download minilibx-linux from project page:
   >curl -LJO [copy link]
 ```
