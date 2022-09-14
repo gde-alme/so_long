@@ -58,20 +58,22 @@ int	compo_map(t_frame *frame, char compo)
 {
 	int	i;
 	int	j;
+	int	counter;
 
 	i = 0;
+	counter = 0;
 	while (i < frame->win_h)
 	{
 		j = 0;
 		while (j < frame->win_w)
 		{
 			if (frame->map[i][j] == compo)
-				return (1);
+				counter++;
 			j++;
 		}
 		i++;
 	}
-	return (0);
+	return (counter);
 }
 
 void	parse_map(t_frame *frame)
@@ -81,7 +83,7 @@ void	parse_map(t_frame *frame)
 	border_map(frame);
 	if (frame->win_w <= frame->win_h)
 		close_game(frame, 1);
-	if (compo_map(frame, 'E') != 1 || compo_map(frame, 'C') != 1
+	if (compo_map(frame, 'E') != 1 || compo_map(frame, 'C') < 1
 		|| compo_map(frame, 'P') != 1)
 	{
 		close_game(frame, 1);

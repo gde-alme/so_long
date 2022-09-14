@@ -4,7 +4,9 @@ int	test_pathname(char *pathname)
 {
 	int	fd;
 
-	if ((fd = open(pathname, O_RDONLY)) < 0)
+	fd = open(pathname, O_RDONLY);
+	if (fd < 0)
 		return (0);
 	return (1);
+	close(fd);
 }
