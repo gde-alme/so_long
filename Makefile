@@ -19,7 +19,7 @@ HEADER	= -Iincludes
 CC	= gcc -Wall -Wextra -Werror
 Inc	= -I./minilibx-linux -Imlx_linux -O3
 
-RM		= rm -f
+RM		= rm -rf
 AR		= ar rc
 RN		= ranlib
 
@@ -27,7 +27,7 @@ RN		= ranlib
 .c.o:		%.o : %.c
 					${CC} ${Inc} ${HEADER} -c $< -o $(<:.c=.o)
 
-all: 		install ${PROG}
+all: 		 ${PROG}
 			${CC} ${OBJS} -Lmlx_linux -lmlx_Linux -L./minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz -o ${PROG}
 install:
 			curl -LJO https://projects.intra.42.fr/uploads/document/document/10440/minilibx-linux.tgz
@@ -38,12 +38,11 @@ ${PROG}: ${OBJS}
 			${AR} ${PROG} ${OBJS}
 			${RN} ${PROG}
 clean:
-			${RM} ${OBJS}
+			${RM} ${OBJS} ${PROG}
 
 fclean: 	clean
-			${RM} ${PROG}
+			${RM} minilibx-linux
 
-re: 		fclean
-			${CC} ${OBJS} -Lmlx_linux -lmlx_Linux -L./minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz -o ${PROG}
+re: 		fclean all
 
 .PHONY: all install clean fclean re

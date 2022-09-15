@@ -53,7 +53,7 @@ int	main(int argc, char **argv)
 	t_frame	*frame;
 
 	if (argc != 2 || test_pathname(argv[1]) != 1)
-		return (0);
+		return (write(1, "Error:\n<NO SUCH FILE>\n", 22));
 	frame = NULL;
 	frame = create_frame(frame);
 	read_map(frame, argv[1]);
