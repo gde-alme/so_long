@@ -13,9 +13,7 @@ displays the new map with said alteration.
 
 ```bash   
 >git clone git@github.com:gde-alme/so_long.git  
->cd so_long/minilibx-linux  
->./configure  
->cd ..  
+>make install
 >make  
 >/so_long map.ber  
 ```
