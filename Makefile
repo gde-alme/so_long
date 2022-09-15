@@ -27,12 +27,13 @@ RN		= ranlib
 .c.o:		%.o : %.c
 					${CC} ${Inc} ${HEADER} -c $< -o $(<:.c=.o)
 
-all: 		${PROG}
+all: 		install ${PROG}
+			${CC} ${OBJS} -Lmlx_linux -lmlx_Linux -L./minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz -o ${PROG}
+install:
 			curl -LJO https://projects.intra.42.fr/uploads/document/document/10440/minilibx-linux.tgz
 			tar -xf minilibx-linux.tgz
 			rm -rf minilibx-linux.tgz
 			make -C minilibx-linux
-			${CC} ${OBJS} -Lmlx_linux -lmlx_Linux -L./minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz -o ${PROG}
 ${PROG}: ${OBJS}
 			${AR} ${PROG} ${OBJS}
 			${RN} ${PROG}
@@ -45,4 +46,4 @@ fclean: 	clean
 re: 		fclean
 			${CC} ${OBJS} -Lmlx_linux -lmlx_Linux -L./minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz -o ${PROG}
 
-.PHONY: all clean fclean re
+.PHONY: all install clean fclean re
