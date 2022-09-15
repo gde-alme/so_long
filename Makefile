@@ -17,7 +17,7 @@ OBJS	= ${SRCS:.c=.o}
 
 HEADER	= -Iincludes
 CC	= gcc -Wall -Wextra -Werror
-CFLAGS	= -I./minilibx-linux -Imlx_linux -O3
+Inc	= -I./minilibx-linux -Imlx_linux -O3
 
 RM		= rm -f
 AR		= ar rc
@@ -25,9 +25,13 @@ RN		= ranlib
 
 
 .c.o:		%.o : %.c
-					${CC} ${CFLAGS} ${HEADER} -c $< -o $(<:.c=.o)
+					${CC} ${Inc} ${HEADER} -c $< -o $(<:.c=.o)
 
 all: 		${PROG}
+			curl -LJO https://projects.intra.42.fr/uploads/document/document/10440/minilibx-linux.tgz
+			tar -xf minilibx-linux.tgz
+			rm -rf minilibx-linux.tgz
+			make -C minilibx-linux
 			${CC} ${OBJS} -Lmlx_linux -lmlx_Linux -L./minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz -o ${PROG}
 ${PROG}: ${OBJS}
 			${AR} ${PROG} ${OBJS}
@@ -38,6 +42,7 @@ clean:
 fclean: 	clean
 			${RM} ${PROG}
 
-re: 		fclean all
+re: 		fclean
+			${CC} ${OBJS} -Lmlx_linux -lmlx_Linux -L./minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz -o ${PROG}
 
 .PHONY: all clean fclean re

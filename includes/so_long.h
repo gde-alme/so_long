@@ -61,6 +61,7 @@ int		count_colec(t_frame *frame);
 void	close_game(t_frame *frame, int error);
 void	ft_putmvs(t_frame *frame);
 int	test_pathname(char *pathname);
+int     check_bad_input(t_frame *frame);
 
 char	*get_next_line(int fd);
 char	*ft_strchr(const char *s, int c);

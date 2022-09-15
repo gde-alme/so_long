@@ -84,7 +84,7 @@ void	parse_map(t_frame *frame)
 	if (frame->win_w <= frame->win_h)
 		close_game(frame, 1);
 	if (compo_map(frame, 'E') != 1 || compo_map(frame, 'C') < 1
-		|| compo_map(frame, 'P') != 1)
+		|| compo_map(frame, 'P') != 1 || check_bad_input(frame) != 0)
 	{
 		close_game(frame, 1);
 	}
