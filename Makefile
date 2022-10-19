@@ -16,7 +16,8 @@ SRCS	= srcs/close_game.c srcs/movement.c srcs/map_display.c srcs/utils.c srcs/ma
 OBJS	= ${SRCS:.c=.o}
 
 HEADER	= -Iincludes
-CC	= gcc -Wall -Wextra -Werror
+CC	= gcc
+CFLAGS  = -Wall -Wextra -Werror
 Inc	= -I./minilibx-linux -Imlx_linux -O3
 
 RM		= rm -rf
@@ -24,25 +25,18 @@ AR		= ar rc
 RN		= ranlib
 
 
-.c.o:		%.o : %.c
-					${CC} ${Inc} ${HEADER} -c $< -o $(<:.c=.o)
+.c.o:	
+			${CC} -c ${CFLAGS} ${Inc} ${HEADER} -o $@ $<
 
 all: 		 ${PROG}
 			${CC} ${OBJS} -Lmlx_linux -lmlx_Linux -L./minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz -o ${PROG}
-install:
-			curl -LJO https://projects.intra.42.fr/uploads/document/document/10440/minilibx-linux.tgz
-			tar -xf minilibx-linux.tgz
-			rm -rf minilibx-linux.tgz
-			make -C minilibx-linux
+
 ${PROG}: ${OBJS}
 			${AR} ${PROG} ${OBJS}
 			${RN} ${PROG}
 clean:
 			${RM} ${OBJS} ${PROG}
 
-fclean: 	clean
-			${RM} minilibx-linux
-
 re: 		fclean all
 
-.PHONY: all install clean fclean re
+.PHONY: all clean fclean re
