@@ -21,5 +21,5 @@ displays the new map with said alteration.
   
 ```bash
 How to download minilibx-linux from project page:
-  >curl -LJO [copy link]
+  >curl -LJO https://projects.intra.42.fr/uploads/document/document/12156/minilibx-linux.tgz
 ```
